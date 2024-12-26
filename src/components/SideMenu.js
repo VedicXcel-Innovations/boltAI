@@ -21,60 +21,66 @@ function SideMenu() {
   };
 
   return (
-    <div className="flex-col justify-between bg-gray-100 hidden md:flex lg:flex rounded-lg h-full">
-      <div className="px-4 py-2 md:px-4 md:py-2 lg:px-6 lg:py-2">
-        <nav aria-label="Main Nav" className="mt-6 flex flex-col space-y-1">
-          <Link to="/" className={getLinkClasses('/')} onClick={handleLinkClick('/')}>
-            <img alt="dashboard-icon" src={require('../assets/dashboard-icon.png')} />
-            <span className="text-sm font-bold"> Dashboard </span>
-          </Link>
+    <div className="h-full bg-gray-100 p-4 rounded-lg">
+      <nav aria-label="Main Nav" className="flex flex-col space-y-2">
+        <Link to="/" className={getLinkClasses('/')} onClick={handleLinkClick('/')}>
+          <img
+            alt="dashboard-icon"
+            src={require('../assets/dashboard-icon.png')}
+            className="w-6 h-6"
+          />
+          <span className="text-sm font-bold"> Dashboard </span>
+        </Link>
 
-          <Link
-            to="/CreateUsers"
-            className={getLinkClasses('/CreateUsers')}
-            onClick={handleLinkClick('/CreateUsers')}
-          >
-            <img alt="user-icon" src={require('../assets/user-icon.png')} />
-            <span className="text-sm font-bold"> Create Users </span>
-          </Link>
+        <Link
+          to="/CreateUsers"
+          className={getLinkClasses('/CreateUsers')}
+          onClick={handleLinkClick('/CreateUsers')}
+        >
+          <img alt="user-icon" src={require('../assets/user-icon.png')} className="w-6 h-6" />
+          <span className="text-sm font-bold"> Create Users </span>
+        </Link>
 
-          <Link
-            to="/CreateOrganization"
-            className={getLinkClasses('/CreateOrganization')}
-            onClick={handleLinkClick('/CreateOrganization')}
-          >
-            <img alt="organizationuser-icon" src={require('../assets/organizationuser-icon.png')} />
-            <span className="text-sm font-bold"> Create Organization </span>
-          </Link>
+        <Link
+          to="/CreateOrganization"
+          className={getLinkClasses('/CreateOrganization')}
+          onClick={handleLinkClick('/CreateOrganization')}
+        >
+          <img
+            alt="organizationuser-icon"
+            src={require('../assets/organizationuser-icon.png')}
+            className="w-6 h-6"
+          />
+          <span className="text-sm font-bold"> Create Organization </span>
+        </Link>
 
-          <Link
-            to="/AreaCategory"
-            className={getLinkClasses('/AreaCategory')}
-            onClick={handleLinkClick('/AreaCategory')}
-          >
-            <img alt="area-icon" src={require('../assets/area-icon.png')} />
-            <span className="text-sm font-bold"> Area Category </span>
-          </Link>
+        <Link
+          to="/AreaCategory"
+          className={getLinkClasses('/AreaCategory')}
+          onClick={handleLinkClick('/AreaCategory')}
+        >
+          <img alt="area-icon" src={require('../assets/area-icon.png')} className="w-6 h-6" />
+          <span className="text-sm font-bold"> Area Category </span>
+        </Link>
 
-          <Link
-            to="/CreateEvents"
-            className={getLinkClasses('/CreateEvents')}
-            onClick={handleLinkClick('/CreateEvents')}
-          >
-            <img alt="event-icon" src={require('../assets/event-icon.png')} />
-            <span className="text-sm font-bold"> Create Events </span>
-          </Link>
+        <Link
+          to="/CreateEvents"
+          className={getLinkClasses('/CreateEvents')}
+          onClick={handleLinkClick('/CreateEvents')}
+        >
+          <img alt="event-icon" src={require('../assets/event-icon.png')} className="w-6 h-6" />
+          <span className="text-sm font-bold"> Create Events </span>
+        </Link>
 
-          <Link
-            to="/reports"
-            className={getLinkClasses('/reports')}
-            onClick={handleLinkClick('/reports')}
-          >
-            <img alt="reports-icon" src={require('../assets/reports-icon.png')} />
-            <span className="text-sm font-bold"> Reports </span>
-          </Link>
-        </nav>
-      </div>
+        <Link
+          to="/reports"
+          className={getLinkClasses('/reports')}
+          onClick={handleLinkClick('/reports')}
+        >
+          <img alt="reports-icon" src={require('../assets/reports-icon.png')} className="w-6 h-6" />
+          <span className="text-sm font-bold"> Reports </span>
+        </Link>
+      </nav>
     </div>
   );
 }

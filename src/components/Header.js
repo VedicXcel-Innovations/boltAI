@@ -1,7 +1,7 @@
 import React from 'react';
 import { Fragment, useContext, useEffect, useState } from 'react';
 import { Disclosure, Menu, Transition } from '@headlessui/react';
-import { BellIcon } from '@heroicons/react/24/outline';
+import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline';
 import AuthContext from '../AuthContext';
 import { Link } from 'react-router-dom';
 
@@ -54,113 +54,143 @@ export default function Header() {
   };
 
   return (
-    <div className="min-h-full">
-      <Disclosure as="nav" className="bg-gray-300">
-        {({ open }) => (
-          <>
-            <div className="flex items-center h-16">
-              {/* Logo Container */}
-              <div className="flex items-center pl-7 pt-8">
+    <Disclosure as="nav" className="bg-gray-300">
+      {({ open }) => (
+        <>
+          <div className="mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="flex h-16 items-center justify-between">
+              <div className="flex-shrink-0">
                 <img
-                  className="h-14 w-auto"
+                  className="h-12 w-auto"
                   src={require('../assets/logo.png')}
                   alt="Inventory Management System"
                 />
               </div>
-
-              {/* Main Container */}
-              <div className="flex-grow flex items-center justify-center mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-                {/* Text Container */}
-                <div className="flex-grow flex items-center justify-center pt-4">
-                  <span className="font-bold text-4xl" style={{ color: '#00303F' }}>
-                    Food & Financial Support Program
-                  </span>
-                </div>
+              <div className="hidden lg:block ml-10">
+                <span
+                  className="font-bold text-2xl md:text-3xl lg:text-4xl"
+                  style={{ color: '#00303F' }}
+                >
+                  Food & Financial Support Program
+                </span>
               </div>
 
-              {/* Right-aligned items */}
-              <div className="flex items-center space-x-4 pr-10">
-                {/* Notification Button */}
-                <button
-                  type="button"
-                  className="rounded-full bg-gray-300 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
-                >
-                  <span className="sr-only">View notifications</span>
-                  <BellIcon className="h-7 w-7" aria-hidden="true" />
-                </button>
+              <div className="hidden lg:block">
+                <div className="flex items-center space-x-4">
+                  <button className="rounded-full bg-gray-300 p-1 text-gray-400 hover:text-white">
+                    <span className="sr-only">View notifications</span>
+                    <BellIcon className="h-7 w-7" aria-hidden="true" />
+                  </button>
 
-                {/* Profile Dropdown */}
-                <Menu as="div" className="relative">
-                  <div>
-                    <Menu.Button className="flex max-w-xs items-center rounded-full bg-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
-                      <span className="sr-only">Open user menu</span>
+                  <Menu as="div" className="relative">
+                    <Menu.Button className="flex items-center rounded-full bg-gray-300 text-sm focus:outline-none">
                       <img
                         className="h-7 w-7 rounded-full"
                         src={userData?.profile_picture}
                         alt="profile"
                       />
-                    </Menu.Button>
-                    {/* User Name */}
-                    <div className="absolute top-full right-0 bg-gray-100 shadow-lg rounded-lg px-4 py-2 mt-2 hover:bg-white transition duration-300">
-                      <p className="text-sm text-black font-medium whitespace-nowrap">
+                      <span className="ml-2 text-sm text-black font-medium">
                         {error ? 'Hi' : `Hi, ${userData?.first_name} ${userData?.last_name}`}
-                      </p>
-                    </div>
-                  </div>
-                  <Transition
-                    as={Fragment}
-                    enter="transition ease-out duration-100"
-                    enterFrom="transform opacity-0 scale-95"
-                    enterTo="transform opacity-100 scale-100"
-                    leave="transition ease-in duration-75"
-                    leaveFrom="transform opacity-100 scale-100"
-                    leaveTo="transform opacity-0 scale-95"
-                  >
-                    <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-                      {userNavigation.map(item => (
-                        <Menu.Item key={item.name}>
-                          {({ active }) => (
-                            <Link
-                              to={item.href}
-                              className={classNames(
-                                active ? 'bg-gray-100' : '',
-                                'block px-4 py-2 text-sm text-gray-700',
-                              )}
-                            >
-                              <span onClick={() => signout()}>{item.name}</span>
-                            </Link>
-                          )}
-                        </Menu.Item>
-                      ))}
-                    </Menu.Items>
-                  </Transition>
-                </Menu>
+                      </span>
+                    </Menu.Button>
+                    <Transition
+                      as={Fragment}
+                      enter="transition ease-out duration-100"
+                      enterFrom="transform opacity-0 scale-95"
+                      enterTo="transform opacity-100 scale-100"
+                      leave="transition ease-in duration-75"
+                      leaveFrom="transform opacity-100 scale-100"
+                      leaveTo="transform opacity-0 scale-95"
+                    >
+                      <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg">
+                        {userNavigation.map(item => (
+                          <Menu.Item key={item.name}>
+                            {({ active }) => (
+                              <Link
+                                to={item.href}
+                                className={classNames(
+                                  active ? 'bg-gray-100' : '',
+                                  'block px-4 py-2 text-sm text-gray-700',
+                                )}
+                                onClick={signout}
+                              >
+                                {item.name}
+                              </Link>
+                            )}
+                          </Menu.Item>
+                        ))}
+                      </Menu.Items>
+                    </Transition>
+                  </Menu>
+                </div>
+              </div>
+
+              <div className="lg:hidden">
+                <Disclosure.Button className="inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white">
+                  <span className="sr-only">Open main menu</span>
+                  {open ? (
+                    <XMarkIcon className="block h-6 w-6" aria-hidden="true" />
+                  ) : (
+                    <Bars3Icon className="block h-6 w-6" aria-hidden="true" />
+                  )}
+                </Disclosure.Button>
               </div>
             </div>
+          </div>
 
-            {/* Navigation Links */}
-            <Disclosure.Panel className="sm:hidden">
-              <div className="flex flex-col items-center w-full mt-4 space-y-2">
-                {navigation.map(item => (
+          <Disclosure.Panel className="lg:hidden">
+            <div className="space-y-1 px-2 pb-3 pt-2">
+              {navigation.map(item => (
+                <Link
+                  key={item.name}
+                  to={item.href}
+                  className={classNames(
+                    item.current
+                      ? 'bg-gray-900 text-white'
+                      : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                    'block rounded-md px-3 py-2 text-base font-medium',
+                  )}
+                  aria-current={item.current ? 'page' : undefined}
+                >
+                  {item.name}
+                </Link>
+              ))}
+            </div>
+            <div className="border-t border-gray-700 pb-3 pt-4">
+              <div className="flex items-center px-5">
+                <div className="flex-shrink-0">
+                  <img
+                    className="h-10 w-10 rounded-full"
+                    src={userData?.profile_picture}
+                    alt="profile"
+                  />
+                </div>
+                <div className="ml-3">
+                  <div className="text-base font-medium text-black">
+                    {error ? 'Hi' : `${userData?.first_name} ${userData?.last_name}`}
+                  </div>
+                </div>
+                <button className="ml-auto rounded-full bg-gray-300 p-1 text-gray-400 hover:text-white">
+                  <span className="sr-only">View notifications</span>
+                  <BellIcon className="h-6 w-6" aria-hidden="true" />
+                </button>
+              </div>
+              <div className="mt-3 space-y-1 px-2">
+                {userNavigation.map(item => (
                   <Link
                     key={item.name}
                     to={item.href}
-                    className={classNames(
-                      item.current
-                        ? 'bg-gray-200 text-gray-900'
-                        : 'text-gray-700 hover:bg-gray-200 hover:text-gray-900',
-                      'block px-3 py-2 rounded-md text-base font-medium',
-                    )}
-                    aria-current={item.current ? 'page' : undefined}
+                    className="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white"
+                    onClick={signout}
                   >
                     {item.name}
                   </Link>
                 ))}
               </div>
-            </Disclosure.Panel>
-          </>
-        )}
-      </Disclosure>
-    </div>
+            </div>
+          </Disclosure.Panel>
+        </>
+      )}
+    </Disclosure>
   );
 }
