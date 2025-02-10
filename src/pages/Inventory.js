@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import {
   Table,
   TableBody,
@@ -14,7 +14,6 @@ import {
   Modal,
   TextField,
 } from '@mui/material';
-import { DoubleArrowDownIcon, DoubleArrowUpIcon } from '../components/Icons';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -147,233 +146,334 @@ const TransactionsPage = () => {
         body: JSON.stringify(transactionData),
       });
       const data = await response.json();
-      console.log(data);
       if (response.ok) {
         setOpenModal(false);
         setSelectedItems([]);
         fetchTransactions();
         fetchInventory();
+        toast.success('Transaction added successfully', {
+          position: 'top-center',
+        });
       } else {
-        console.error('Failed to create transaction');
+        toast.error('Failed to create transaction', {
+          position: 'top-center',
+        });
       }
     } catch (error) {
       toast.error(`Error submitting transaction : ${error}`, {
         position: 'top-center',
       });
-      console.error('Error submitting transaction:', error);
     }
   };
+
+  const DoubleArrowDownIcon = ({ size = 24, color = 'blue' }) => (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill={color}
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path d="M6 10l6 6 6-6H6z" />
+      <path d="M6 4l6 6 6-6H6z" />
+    </svg>
+  );
+
+  const DoubleArrowUpIcon = ({ size = 24, color = 'skyblue' }) => (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill={color}
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path d="M18 14l-6-6-6 6h12z" />
+      <path d="M18 20l-6-6-6 6h12z" />
+    </svg>
+  );
+
   return (
-    <>
-    <div className="grid grid-cols-1 col-span-10 md:col-span-6 lg:col-span-8 xl:col-span-10 2xl:col-span-14 gap-8 p-8">
-      <Modal open={openModal} onClose={() => setOpenModal(false)}>
+    <div className="container mx-auto mt-6 col-span-10 md:col-span-6 lg:col-span-8 xl:col-span-10 2xl:col-span-14 p-8">
+      <div className="bg-white rounded-lg shadow-lg p-6 mb-8">
+        <Typography variant="h4" className="text-center text-blue-700 mb-8">
+          <strong>Current Inventory Status</strong>
+        </Typography>
+        <TableContainer component={Paper} className="mt-6 mb-8 shadow-md">
+          <Table className="min-w-full">
+            <TableHead className="bg-gray-300">
+              <TableRow>
+                <TableCell align="center" className="font-bold text-lg text-gray-700 px-6 py-4">
+                  <strong>Item Name</strong>
+                </TableCell>
+                <TableCell align="center" className="font-bold text-lg text-gray-700 px-6 py-4">
+                  <strong>Available Quantity</strong>
+                </TableCell>
+                <TableCell align="center" className="font-bold text-lg text-gray-700 px-6 py-4">
+                  <strong>Hold Quantity</strong>
+                </TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {inventory.map(item => (
+                <TableRow
+                  key={item.item_id}
+                  className="hover:bg-gray-50 transition-colors duration-150"
+                >
+                  <TableCell align="center" className="px-6 py-4 font-bold">
+                    {item.item_name}
+                  </TableCell>
+                  <TableCell align="center" className="px-6 py-4 font-bold">
+                    {`${item.amount_available} KG/Litre`}
+                  </TableCell>
+                  <TableCell align="center" className="px-6 py-4 font-bold">
+                    {`${item.amount_on_hold} KG/Litre`}
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+
+        <div className="flex justify-center items-center mb-6">
+          <Button
+            variant="contained"
+            color="success"
+            onClick={() => setOpenModal(true)}
+            sx={{
+              textTransform: 'none',
+              fontWeight: 'bold',
+              fontSize: '1.25rem',
+              padding: '0.75rem 2rem',
+              borderRadius: '0.5rem',
+              boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+            }}
+          >
+            New Transaction
+          </Button>
+        </div>
+
+        <div className="flex justify-center items-center mt-10 mb-6">
+          <Typography variant="h4" className="text-center text-purple-700 mb-8">
+            <strong>Transaction History</strong>
+          </Typography>
+        </div>
+
+        <TableContainer component={Paper} className="shadow-md">
+          <Table className="min-w-full">
+            <TableHead className="bg-gray-300">
+              <TableRow>
+                <TableCell align="center" className="w-16"></TableCell>
+                <TableCell align="center" className="font-bold text-gray-700">
+                  <strong>Ref. ID</strong>
+                </TableCell>
+                <TableCell align="center" className="font-bold text-gray-700">
+                  <strong>Transaction Type</strong>
+                </TableCell>
+                <TableCell align="center" className="font-bold text-gray-700">
+                  <strong>Transaction Name</strong>
+                </TableCell>
+                <TableCell align="center" className="font-bold text-gray-700">
+                  <strong>Reason</strong>
+                </TableCell>
+                <TableCell align="center" className="font-bold text-gray-700">
+                  <strong>Created By</strong>
+                </TableCell>
+                <TableCell align="center" className="font-bold text-gray-700">
+                  <strong>Created At</strong>
+                </TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {transactions.map(transaction => (
+                <React.Fragment key={transaction.transaction_id}>
+                  <TableRow className="hover:bg-gray-50 transition-colors duration-150">
+                    <TableCell
+                      align="center"
+                      onClick={() => toggleRow(transaction.transaction_id)}
+                      className="cursor-pointer"
+                    >
+                      {openRows[transaction.transaction_id] ? (
+                        <DoubleArrowUpIcon />
+                      ) : (
+                        <DoubleArrowDownIcon />
+                      )}
+                    </TableCell>
+                    <TableCell align="center">{transaction.reference_id}</TableCell>
+                    <TableCell align="center">{transaction.transaction_type}</TableCell>
+                    <TableCell align="center">{transaction.name}</TableCell>
+                    <TableCell align="center">{transaction.reason}</TableCell>
+                    <TableCell align="center">{transaction.created_by}</TableCell>
+                    <TableCell align="center">
+                      {new Date(transaction.created_at).toLocaleString()}
+                    </TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell colSpan={7} style={{ padding: 0 }}>
+                      <Collapse
+                        in={openRows[transaction.transaction_id]}
+                        timeout="auto"
+                        unmountOnExit
+                      >
+                        <Box className="p-4 bg-gray-50">
+                          <Typography
+                            variant="h5"
+                            align="center"
+                            className="font-bold text-purple-500 mb-5"
+                          >
+                            Transaction Description
+                          </Typography>
+                          <Table size="small">
+                            <TableHead>
+                              <TableRow>
+                                <TableCell align="center">
+                                  <strong>Item Name</strong>
+                                </TableCell>
+                                <TableCell align="center">
+                                  <strong>Amount Modified</strong>
+                                </TableCell>
+                              </TableRow>
+                            </TableHead>
+                            <TableBody>
+                              {transaction.items.map(item => (
+                                <TableRow key={item.item_id}>
+                                  <TableCell align="center">{item.item_name}</TableCell>
+                                  <TableCell align="center">{`${item.amount_modified} KG/Litre`}</TableCell>
+                                </TableRow>
+                              ))}
+                            </TableBody>
+                          </Table>
+                        </Box>
+                      </Collapse>
+                    </TableCell>
+                  </TableRow>
+                </React.Fragment>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      </div>
+
+      <Modal
+        open={openModal}
+        onClose={() => setOpenModal(false)}
+        className="flex items-center justify-center"
+      >
         <Box
+          className="bg-white rounded-lg shadow-xl"
           sx={{
+            width: '90%',
+            maxWidth: '800px',
+            maxHeight: '90vh',
             display: 'flex',
             flexDirection: 'column',
-            justifyContent: 'space-between',
-            backgroundColor: 'white',
-            width: '50%',
-            margin: 'auto',
-            mt: 5,
-            p: 3,
-            maxHeight: '80vh', // ✅ Limit modal height
-            overflow: 'hidden', // ✅ Prevent full modal from scrolling
-            borderRadius: 2,
+            p: 4,
           }}
         >
-          {/* Scrollable Content */}
-          <Box sx={{ overflowY: 'auto', flexGrow: 1, pr: 1, maxHeight: '65vh' }}>
-            <Typography variant="h6">New Transaction</Typography>
+          <Typography variant="h5" className="font-bold text-gray-800 mb-6">
+            New Transaction
+          </Typography>
 
+          <div className="overflow-y-auto flex-grow pr-4">
             <TextField
               fullWidth
               label="Name"
               variant="outlined"
-              sx={{ mt: 2 }}
               value={newTransaction.name}
               onChange={e => setNewTransaction({ ...newTransaction, name: e.target.value })}
+              className="mb-4"
             />
             <TextField
               fullWidth
               label="Reason"
               variant="outlined"
-              sx={{ mt: 2 }}
               value={newTransaction.reason}
               onChange={e => setNewTransaction({ ...newTransaction, reason: e.target.value })}
+              className="mb-4"
             />
             <TextField
               fullWidth
               label="Description"
               variant="outlined"
-              sx={{ mt: 2 }}
+              multiline
+              rows={3}
               value={newTransaction.description}
               onChange={e => setNewTransaction({ ...newTransaction, description: e.target.value })}
+              className="mb-6"
             />
 
-            {/* Available Items List */}
-            <Typography variant="subtitle1" sx={{ mt: 2 }}>
+            <Typography variant="h6" className="font-semibold text-gray-700 mb-3">
               Available Items
             </Typography>
-            <Box sx={{ maxHeight: '150px', overflowY: 'auto', border: '1px solid gray', p: 1 }}>
+            <Paper className="p-4 mb-6 max-h-48 overflow-y-auto">
               {items.map(item => (
-                <Box
+                <div
                   key={item.item_id}
-                  display="flex"
-                  alignItems="center"
-                  justifyContent="space-between"
+                  className="flex items-center justify-between p-2 hover:bg-gray-50 rounded"
                 >
                   <Typography>
                     {item.item_name} ({item.uom})
                   </Typography>
-                  <Button variant="outlined" onClick={() => handleAddItem(item)}>
+                  <Button
+                    variant="outlined"
+                    onClick={() => handleAddItem(item)}
+                    size="small"
+                    className="min-w-[100px]"
+                  >
                     Add
                   </Button>
-                </Box>
+                </div>
               ))}
-            </Box>
+            </Paper>
 
-            {/* Selected Items List */}
-            <Typography variant="subtitle1" sx={{ mt: 2 }}>
+            <Typography variant="h6" className="font-semibold text-gray-700 mb-3">
               Selected Items
             </Typography>
-            {selectedItems.map((item, index) => (
-              <Box key={index} display="flex" alignItems="center" gap={2} sx={{ mt: 1 }}>
-                <Typography>{item.item_name}</Typography>
-                <TextField
-                  label="Amount"
-                  type="number"
-                  value={item.amount_modified}
-                  onChange={e => handleItemChange(index, 'amount_modified', e.target.value)}
-                />
-                <Button
-                  variant="contained"
-                  color="error"
-                  onClick={() => handleRemoveItem(item.item_id)}
-                >
-                  Remove
-                </Button>
-              </Box>
-            ))}
-          </Box>
+            <div className="space-y-3">
+              {selectedItems.map((item, index) => (
+                <div key={index} className="flex items-center gap-4 bg-gray-50 p-3 rounded">
+                  <Typography className="min-w-[150px]">{item.item_name}</Typography>
+                  <TextField
+                    label="Amount"
+                    type="number"
+                    size="small"
+                    value={item.amount_modified}
+                    onChange={e => handleItemChange(index, 'amount_modified', e.target.value)}
+                    className="flex-grow"
+                  />
+                  <Button
+                    variant="contained"
+                    color="error"
+                    onClick={() => handleRemoveItem(item.item_id)}
+                    size="small"
+                  >
+                    Remove
+                  </Button>
+                </div>
+              ))}
+            </div>
+          </div>
 
-          {/* Fixed Footer with Submit Button */}
-          <Box
-            sx={{
-              textAlign: 'right',
-              mt: 2,
-              pt: 2,
-              borderTop: '1px solid #ccc',
-              background: 'white',
-            }}
-          >
-            <Button onClick={handleSubmit} variant="contained" color="primary">
+          <div className="flex justify-end gap-3 mt-6 pt-4 border-t">
+            <Button
+              variant="outlined"
+              onClick={() => setOpenModal(false)}
+              className="min-w-[100px]"
+            >
+              Cancel
+            </Button>
+            <Button
+              variant="contained"
+              onClick={handleSubmit}
+              className="min-w-[100px]"
+              disabled={selectedItems.length === 0}
+            >
               Submit
             </Button>
-          </Box>
+          </div>
         </Box>
       </Modal>
-      <TableHead>
-        <TableRow>
-          <TableCell>Item Name</TableCell>
-          <TableCell>Available</TableCell>
-          <TableCell>On Hold</TableCell>
-        </TableRow>
-      </TableHead>
-      <TableBody>
-        {inventory.map(item => (
-          <TableRow key={item.item_id}>
-            <TableCell>{item.item_name}</TableCell>
-            <TableCell>{item.amount_available}</TableCell>
-            <TableCell>{item.amount_on_hold}</TableCell>
-          </TableRow>
-        ))}
-      </TableBody>
-
-      <TableContainer component={Paper}>
-        <Button
-          variant="contained"
-          color="primary"
-          onClick={() => setOpenModal(true)}
-          style={{ marginBottom: 10 }}
-        >
-          New Transaction
-        </Button>
-        <Table>
-          <TableHead>
-            <TableRow>
-              <TableCell />
-              <TableCell>Reference ID</TableCell>
-              <TableCell>Transaction Type</TableCell>
-              <TableCell>Created By</TableCell>
-              <TableCell>Name</TableCell>
-              <TableCell>Reason</TableCell>
-              <TableCell>Created At</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {transactions.map(transaction => (
-              <React.Fragment key={transaction.transaction_id}>
-                {/* Main Transaction Row */}
-                <TableRow>
-                  <TableCell
-                    onClick={() => toggleRow(transaction.transaction_id)}
-                    style={{ cursor: 'pointer' }}
-                  >
-                    {openRows[transaction.transaction_id] ? (
-                      <DoubleArrowUpIcon />
-                    ) : (
-                      <DoubleArrowDownIcon />
-                    )}
-                  </TableCell>
-                  <TableCell>{transaction.reference_id}</TableCell>
-                  <TableCell>{transaction.transaction_type}</TableCell>
-                  <TableCell>{transaction.created_by}</TableCell>
-                  <TableCell>{transaction.name}</TableCell>
-                  <TableCell>{transaction.reason}</TableCell>
-                  <TableCell>{new Date(transaction.created_at).toLocaleString()}</TableCell>
-                </TableRow>
-
-                {/* Collapsible Row for Items */}
-                <TableRow>
-                  <TableCell colSpan={7} style={{ padding: 0 }}>
-                    <Collapse
-                      in={openRows[transaction.transaction_id]}
-                      timeout="auto"
-                      unmountOnExit
-                    >
-                      <Box margin={1}>
-                        <Typography variant="subtitle1" gutterBottom>
-                          Items in this Transaction
-                        </Typography>
-                        <Table size="small">
-                          <TableHead>
-                            <TableRow>
-                              <TableCell>Item Name</TableCell>
-                              <TableCell>Amount Modified</TableCell>
-                            </TableRow>
-                          </TableHead>
-                          <TableBody>
-                            {transaction.items.map(item => (
-                              <TableRow key={item.item_id}>
-                                <TableCell>{item.item_name}</TableCell>
-                                <TableCell>{item.amount_modified}</TableCell>
-                              </TableRow>
-                            ))}
-                          </TableBody>
-                        </Table>
-                      </Box>
-                    </Collapse>
-                  </TableCell>
-                </TableRow>
-              </React.Fragment>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
-      </div>
       <ToastContainer />
-    </>
+    </div>
   );
 };
 
