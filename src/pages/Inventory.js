@@ -52,6 +52,10 @@ const TransactionsPage = () => {
   const [isItemPopupOpen, setItemPopupOpen] = useState(false);
   const [newItemName, setNewItemName] = useState('');
   const [newItemUom, setNewItemUom] = useState('');
+  const [openStockReport, setOpenStockReport] = useState(false);
+  const [startDate, setStartDate] = useState(null);
+  const [endDate, setEndDate] = useState(null);
+  const [eventType, setEventType] = useState("");
 
   const [newTransaction, setNewTransaction] = useState({
     name: '',
@@ -417,49 +421,52 @@ const TransactionsPage = () => {
     }
   };
 
-  const StockReportButton = () => {
-    const [open, setOpen] = useState(false);
-    const [startDate, setStartDate] = useState(null);
-    const [endDate, setEndDate] = useState(null);
-    const [eventType, setEventType] = useState("");
-  
-    const handleOpen = () => setOpen(true);
-    const handleClose = () => setOpen(false);
-  
-    const handleDownload = async () => {
-      if (!startDate || !endDate || !eventType) {
-        alert("Please fill in all fields");
-        return;
-      }
-  
-      const requestBody = {
-        startDate: format(startDate, "yyyy-MM-dd"),
-        endDate: format(endDate, "yyyy-MM-dd"),
-        support_categories_id: eventType,
-      };
-  
-      try {
-        const response = await fetch(`${apiBaseUrl}/inventory/generate-excel`, {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(requestBody),
-        });
-  
-        const result = await response.json();
-        if (result.success && result.fileUrl) {
-          window.open(result.fileUrl, "_blank");
-        } else {
-          alert("Failed to generate report");
-        }
-      } catch (error) {
-        console.error("Error fetching report:", error);
-        alert("Error generating report");
-      }
-  
-      handleClose();
+  const handleDownloadStockReport = async () => {
+    if (!startDate || !endDate || !eventType) {
+      toast.error("Please fill in all fields", {
+        position: 'top-center',
+      });
+      return;
+    }
+
+    const requestBody = {
+      startDate: format(startDate, "yyyy-MM-dd"),
+      endDate: format(endDate, "yyyy-MM-dd"),
+      support_categories_id: eventType,
     };
+
+    console.log("Request payload:", requestBody);
+
+    try {
+      const response = await fetch(`${apiBaseUrl}/inventory/generate-excel`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
+        },
+        body: JSON.stringify(requestBody),
+      });
+
+      const result = await response.json();
+      console.log("API Response:", result);
+      if (result.success && result.fileUrl) {
+        window.open(result.fileUrl, "_blank");
+        toast.success("Stock report generated successfully", {
+          position: 'top-center',
+        });
+      } else {
+        toast.error("Failed to generate report", {
+          position: 'top-center',
+        });
+      }
+    } catch (error) {
+      console.error("Error fetching report:", error);
+      toast.error("Error generating report", {
+        position: 'top-center',
+      });
+    }
+
+    setOpenStockReport(false);
   };
 
   const DoubleArrowDownIcon = ({ size = 24, color = 'blue' }) => (
@@ -595,7 +602,7 @@ const TransactionsPage = () => {
           <Button
             variant="contained"
             color="secondary"
-            onClick={handleOpen}
+            onClick={() => setOpenStockReport(true)}
             sx={{
               textTransform: 'none',
               fontWeight: 'bold',
@@ -610,38 +617,48 @@ const TransactionsPage = () => {
           </Button>
         </div>
 
-        <Dialog open={open} onClose={handleClose}>
-        <DialogTitle>Generate Stock Report</DialogTitle>
-        <DialogContent>
-          <div>
-            <label>Start Date</label>
-            <DayPicker mode="single" selected={startDate} onSelect={setStartDate} />
-          </div>
-          <div>
-            <label>End Date</label>
-            <DayPicker mode="single" selected={endDate} onSelect={setEndDate} />
-          </div>
-          <TextField
-            select
-            label="Event Type"
-            value={eventType}
-            onChange={(e) => setEventType(e.target.value)}
-            fullWidth
-            margin="dense"
-          >
-            <MenuItem value="11">Food Event</MenuItem>
-            <MenuItem value="12">Financial Event</MenuItem>
-          </TextField>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose} color="secondary">
-            Cancel
-          </Button>
-          <Button onClick={handleDownload} color="primary" variant="contained">
-            Download
-          </Button>
-        </DialogActions>
-      </Dialog>
+        <Dialog open={openStockReport} onClose={() => setOpenStockReport(false)}>
+          <DialogTitle>Generate Stock Report</DialogTitle>
+          <DialogContent>
+            <div className="mb-4">
+              <Typography variant="subtitle1" className="mb-2">Start Date</Typography>
+              <DayPicker
+                mode="single"
+                selected={startDate}
+                onSelect={setStartDate}
+                className="border rounded-lg p-2"
+              />
+            </div>
+            <div className="mb-4">
+              <Typography variant="subtitle1" className="mb-2">End Date</Typography>
+              <DayPicker
+                mode="single"
+                selected={endDate}
+                onSelect={setEndDate}
+                className="border rounded-lg p-2"
+              />
+            </div>
+            <TextField
+              select
+              label="Event Type"
+              value={eventType}
+              onChange={(e) => setEventType(e.target.value)}
+              fullWidth
+              margin="dense"
+            >
+              <MenuItem value="11">Food Event</MenuItem>
+              <MenuItem value="12">Financial Event</MenuItem>
+            </TextField>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={() => setOpenStockReport(false)} color="secondary">
+              Cancel
+            </Button>
+            <Button onClick={handleDownloadStockReport} color="primary" variant="contained">
+              Download
+            </Button>
+          </DialogActions>
+        </Dialog>
 
         {isItemPopupOpen && (
           <div className="fixed inset-0 flex items-center justify-center z-50 p-4 bg-black bg-opacity-50">
