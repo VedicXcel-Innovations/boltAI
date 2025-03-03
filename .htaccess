@@ -1,12 +1,16 @@
 RewriteEngine On
 RewriteBase /
 
-# Remove .php extension
+# Allow direct access to static assets (CSS, JS, images)
+RewriteCond %{REQUEST_URI} \.(css|js|png|jpg|jpeg|gif|svg|woff|woff2|ttf|eot|mp4|pdf|ico|json)$ [NC]
+RewriteRule .* - [L]
+
+# Remove .php extension for main PHP files
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME}.php -f
 RewriteRule ^(.+)$ $1.php [L,QSA]
 
-# Redirect to 404 if file not found
+# Redirect all other requests to 404.php if file is missing
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule . /404.php [L]
