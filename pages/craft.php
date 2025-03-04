@@ -106,8 +106,8 @@
             <p class="text-center mb-5">Our artisans create a wide range of eco-friendly jute products that combine
                 traditional craftsmanship with contemporary designs.</p>
 
-            <div class="grid">
-                <div class="col-12 col-sm-4 mb-4">
+            <div class="d-flex flex-wrap">
+                <div class="col-12 col-sm-3 mb-4 px-2" style="margin-left: 40px; margin-right: 40px;">
                     <div class="card shadow h-100">
                         <div class="p-4">
                             <div class="feature-icon text-center mb-3"><i class="fas fa-shopping-bag"></i></div>
@@ -123,7 +123,7 @@
                     </div>
                 </div>
 
-                <div class="col-12 col-sm-4 mb-4">
+                <div class="col-12 col-sm-3 mb-4 px-2" style="margin-left: 40px; margin-right: 40px;">
                     <div class="card shadow h-100">
                         <div class="p-4">
                             <div class="feature-icon text-center mb-3"><i class="fas fa-home"></i></div>
@@ -139,7 +139,7 @@
                     </div>
                 </div>
 
-                <div class="col-12 col-sm-4 mb-4">
+                <div class="col-12 col-sm-3 mb-4 px-2" style="margin-left: 40px; margin-right: 40px;">
                     <div class="card shadow h-100">
                         <div class="p-4">
                             <div class="feature-icon text-center mb-3"><i class="fas fa-gift"></i></div>

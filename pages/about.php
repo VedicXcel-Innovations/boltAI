@@ -128,6 +128,90 @@
                 <a href="#" class="btn btn-primary mt-2">View Map</a>
             </div>
         </section>
+
+        <section class="section">
+            <h2>Our Impact</h2>
+            <div class="grid">
+                <div class="col-12 col-sm-6 mb-4">
+                    <div class="card shadow h-100">
+                        <div class="p-4">
+                            <div class="d-flex align-items-center mb-3">
+                                <div class="feature-icon me-3"><i class="fas fa-child"></i></div>
+                                <h3 class="mb-0">Child Protection</h3>
+                            </div>
+                            <p>Over 200 children have been rehabilitated and reintegrated into society through our Child
+                                Care Institutions. These children now have access to education, counseling, and
+                                vocational training, ensuring a brighter future.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-sm-6 mb-4">
+                    <div class="card shadow h-100">
+                        <div class="p-4">
+                            <div class="d-flex align-items-center mb-3">
+                                <div class="feature-icon me-3"><i class="fas fa-hands"></i></div>
+                                <h3 class="mb-0">Livelihood Programs</h3>
+                            </div>
+                            <p>More than 150 women artisans have been trained in jute and bamboo crafts. This training
+                                has enhanced their income by 40%, providing them with financial independence and
+                                confidence.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-sm-6 mb-4">
+                    <div class="card shadow h-100">
+                        <div class="p-4">
+                            <div class="d-flex align-items-center mb-3">
+                                <div class="feature-icon me-3"><i class="fas fa-tint"></i></div>
+                                <h3 class="mb-0">Health and Sanitation</h3>
+                            </div>
+                            <p>Through the construction of 350 soak pits in tribal villages, JSVK has improved hygiene
+                                and sanitation for over 5,000 households. These initiatives have significantly reduced
+                                waterborne diseases.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-sm-6 mb-4">
+                    <div class="card shadow h-100">
+                        <div class="p-4">
+                            <div class="d-flex align-items-center mb-3">
+                                <div class="feature-icon me-3"><i class="fas fa-seedling"></i></div>
+                                <h3 class="mb-0">Environmental Action</h3>
+                            </div>
+                            <p>JSVK's afforestation drives have led to the plantation of 20,000 trees across 10
+                                districts, contributing to climate resilience and environmental conservation.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card shadow p-4 mt-4">
+                <h3 class="text-center mb-3">Community Empowerment</h3>
+                <p>By supporting village development plans for 52 tribal villages, JSVK has positively impacted over
+                    20,000 individuals, addressing critical needs like water, sanitation, and livelihoods.</p>
+                <div class="stats mt-4">
+                    <div class="stat">
+                        <div class="stat-number">200+</div>
+                        <div class="stat-label">Children Rehabilitated</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">150+</div>
+                        <div class="stat-label">Women Artisans Trained</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">20000+</div>
+                        <div class="stat-label">Trees Planted</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">5000+</div>
+                        <div class="stat-label">Households Supported</div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </div>
 </main>
 

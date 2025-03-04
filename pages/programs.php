@@ -17,7 +17,7 @@
                         <div class="p-4">
                             <div class="d-flex align-items-center mb-3">
                                 <div class="feature-icon me-3"><i class="fas fa-child"></i></div>
-                                <h3 class="mb-0">Child Care Institutions (CCI)</h3>
+                                <h3 class="mb-0">&nbsp;Child Care Institutions (CCI)</h3>
                             </div>
                             <p>JSVK operates CCIs in Jamtara and Saraikela Kharsawan districts under the Mission
                                 Vatsalya program. These institutions provide a safe and nurturing environment for
@@ -36,7 +36,7 @@
                         <div class="p-4">
                             <div class="d-flex align-items-center mb-3">
                                 <div class="feature-icon me-3"><i class="fas fa-hands"></i></div>
-                                <h3 class="mb-0">Jute Resource cum Production Centre</h3>
+                                <h3 class="mb-0">&nbsp;Jute Resource cum Production Centre</h3>
                             </div>
                             <p>This initiative empowers rural artisans by providing them with the skills needed to
                                 produce eco-friendly jute products. Participants undergo training in designing,
@@ -54,7 +54,7 @@
                         <div class="p-4">
                             <div class="d-flex align-items-center mb-3">
                                 <div class="feature-icon me-3"><i class="fas fa-users"></i></div>
-                                <h3 class="mb-0">Tribal Empowerment Workshops</h3>
+                                <h3 class="mb-0">&nbsp;Tribal Empowerment Workshops</h3>
                             </div>
                             <p>Focused on empowering tribal women, these workshops provide hands-on training in jute
                                 handicrafts. Participants learn essential skills to create marketable products, enabling
@@ -72,7 +72,7 @@
                         <div class="p-4">
                             <div class="d-flex align-items-center mb-3">
                                 <div class="feature-icon me-3"><i class="fas fa-home"></i></div>
-                                <h3 class="mb-0">Pradhan Mantri Aadi Adarsh Gram Yojna</h3>
+                                <h3 class="mb-0">&nbsp;Pradhan Mantri Aadi Adarsh Gram Yojna</h3>
                             </div>
                             <p>Under this scheme, JSVK has developed comprehensive village plans for 52 tribal villages.
                                 Key activities include water harvesting, sanitation improvement, and livelihood
@@ -90,7 +90,7 @@
                         <div class="p-4">
                             <div class="d-flex align-items-center mb-3">
                                 <div class="feature-icon me-3"><i class="fas fa-heartbeat"></i></div>
-                                <h3 class="mb-0">Health and Sanitation</h3>
+                                <h3 class="mb-0">&nbsp;Health and Sanitation</h3>
                             </div>
                             <p>JSVK's health programs focus on hygiene education and infrastructure development, such as
                                 soak pits near hand pumps. These efforts address waterborne diseases and promote
@@ -108,7 +108,7 @@
                         <div class="p-4">
                             <div class="d-flex align-items-center mb-3">
                                 <div class="feature-icon me-3"><i class="fas fa-hand-holding-heart"></i></div>
-                                <h3 class="mb-0">Humanitarian Initiatives</h3>
+                                <h3 class="mb-0">&nbsp;Humanitarian Initiatives</h3>
                             </div>
                             <p>During harsh winters, JSVK distributes blankets and organizes health camps for the
                                 homeless. These efforts provide immediate relief and improved living conditions for
@@ -126,7 +126,7 @@
                         <div class="p-4">
                             <div class="d-flex align-items-center mb-3">
                                 <div class="feature-icon me-3"><i class="fas fa-flag"></i></div>
-                                <h3 class="mb-0">Har Ghar Tiranga Abhiyan</h3>
+                                <h3 class="mb-0">&nbsp;Har Ghar Tiranga Abhiyan</h3>
                             </div>
                             <p>This campaign fosters a sense of patriotism and community spirit by encouraging
                                 households to hoist the national flag.</p>
@@ -142,7 +142,7 @@
                         <div class="p-4">
                             <div class="d-flex align-items-center mb-3">
                                 <div class="feature-icon me-3"><i class="fas fa-seedling"></i></div>
-                                <h3 class="mb-0">Save Environment</h3>
+                                <h3 class="mb-0">&nbsp;Save Environment</h3>
                             </div>
                             <p>JSVK actively promotes afforestation and eco-friendly alternatives to plastics. Programs
                                 include tree plantation drives and the distribution of biodegradable products.</p>

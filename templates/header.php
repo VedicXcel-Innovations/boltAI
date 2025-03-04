@@ -52,31 +52,23 @@ include $_SERVER['DOCUMENT_ROOT'] . '/config.php';
                             "submenu" => [
                                 "pages/about.php" => "Overview",
                                 "pages/meet_team.php" => "Meet Our Team",
-                                "pages/impact.php" => "Our Impact"
+                                "pages/supporters.php" => "Our Supporters"
                             ]
                         ],
-                        "programs" => [
-                            "name" => "Programs",
-                            "icon" => "fa-project-diagram",
-                            "submenu" => [
-                                "pages/programs.php" => "All Programs"
-                            ]
-                        ],
+                        "pages/programs.php" => ["name" => "Programs", "icon" => "fa-project-diagram"],
                         "pages/craft.php" => ["name" => "Craft & Jute Creations", "icon" => "fa-hands-helping"],
                         "pages/make_difference.php" => ["name" => "Make a Difference", "icon" => "fa-hand-holding-heart"],
                         "resources" => [
                             "name" => "Resources",
                             "icon" => "fa-file-alt",
                             "submenu" => [
-                                "pages/resources.php" => "All Resources",
                                 "pages/articles.php" => "Articles",
                                 "pages/media_coverage.php" => "Media & Coverage",
                                 "pages/annual_report.php" => "Annual Report",
                                 "pages/financial_statement.php" => "Financial Statement",
                                 "pages/policies.php" => "Policies"
                             ]
-                        ],
-                        "pages/supporters.php" => ["name" => "Our Supporters", "icon" => "fa-users"]
+                        ]
                     ];
 
                     foreach ($main_menu as $key => $item) {

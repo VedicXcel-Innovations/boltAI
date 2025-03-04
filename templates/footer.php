@@ -19,9 +19,9 @@
                 <li><a href="<?= BASE_URL ?>index.php"><i class="fas fa-chevron-right"></i> Home</a></li>
                 <li><a href="<?= BASE_URL ?>pages/about.php"><i class="fas fa-chevron-right"></i> About Us</a></li>
                 <li><a href="<?= BASE_URL ?>pages/programs.php"><i class="fas fa-chevron-right"></i> Programs</a></li>
+                <li><a href="<?= BASE_URL ?>pages/craft.php"><i class="fas fa-chevron-right"></i> Craft & Jute Creations</a></li>
                 <li><a href="<?= BASE_URL ?>pages/make_difference.php"><i class="fas fa-chevron-right"></i> Make a
                         Difference</a></li>
-                <li><a href="<?= BASE_URL ?>pages/resources.php"><i class="fas fa-chevron-right"></i> Resources</a></li>
             </ul>
         </div>
 
