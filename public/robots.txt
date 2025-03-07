@@ -1,0 +1,6 @@
+# Block all crawlers completely
+User-agent: *
+Disallow: /
+
+# Prevent indexing
+Noindex: /
