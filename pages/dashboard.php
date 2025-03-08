@@ -391,8 +391,8 @@ function formatTimestampToIST($timestamp)
                 <a href="#" class="btn btn-primary"><i class="fas fa-plus"></i> Add Team Member</a>
                 <a href="#" class="btn btn-primary"><i class="fas fa-plus"></i> Add Supporter</a>
                 <a href="add_article.php" class="btn btn-primary">
-  <i class="fas fa-plus"></i> Upload Article
-</a>
+                    <i class="fas fa-plus"></i> Upload Article
+                </a>
                 <a href="#" class="btn btn-primary"><i class="fas fa-upload"></i> Upload Media</a>
             </div>
         </div>

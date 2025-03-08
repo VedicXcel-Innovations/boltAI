@@ -5,7 +5,7 @@ include '../php/db_config.php';
 
 // Fetch articles with pagination
 $page = isset($_GET['page']) ? (int) $_GET['page'] : 1;
-$per_page = 9;
+$per_page = 3;
 $offset = ($page - 1) * $per_page;
 
 // Get total articles count
@@ -44,7 +44,8 @@ if (!$articles) {
             <?php else: ?>
                 <div class="articles-grid">
                     <?php while ($article = $articles->fetch_assoc()): ?>
-                        <article class="article-container">
+                        <article class="article-container"
+                            style="border: 1px solid var(--gray-300); margin-bottom: 2rem; border-radius: var(--border-radius);">
                             <div class="article-content">
                                 <h2 class="article-title"><?= htmlspecialchars($article['title']) ?></h2>
                                 <p class="article-text"><?= nl2br(htmlspecialchars(substr($article['content'], 0, 200))) ?>...
@@ -59,7 +60,6 @@ if (!$articles) {
                             </div>
 
                             <?php
-                            // Fetch media for this article
                             $media_stmt = $conn->prepare("SELECT * FROM media_article WHERE article_id = ?");
                             $media_stmt->bind_param("i", $article['id']);
                             $media_stmt->execute();
@@ -75,7 +75,12 @@ if (!$articles) {
                                         <div class="media-item <?= $is_video ? 'video' : '' ?>"
                                             onclick="openModal('<?= $media_url ?>', '<?= $item['media_type'] ?>')">
                                             <?php if ($is_video): ?>
-                                                <video src="<?= $media_url ?>" muted></video>
+                                                <video src="<?= $media_url ?>" preload="metadata">
+                                                    Your browser does not support the video tag.
+                                                </video>
+                                                <div class="play-icon">
+                                                    <i class="fas fa-play"></i>
+                                                </div>
                                             <?php else: ?>
                                                 <img src="<?= $media_url ?>" alt="Article media">
                                             <?php endif; ?>
@@ -100,7 +105,6 @@ if (!$articles) {
         </section>
     </div>
 
-    <!-- Modal for media preview -->
     <div class="modal" id="mediaModal">
         <div class="modal-close" onclick="closeModal()">
             <i class="fas fa-times"></i>
@@ -127,15 +131,13 @@ if (!$articles) {
         } else {
             modalVideo.src = src;
             modalVideo.style.display = 'block';
+            modalVideo.play();
         }
 
         modal.style.display = 'flex';
         setTimeout(() => modal.classList.add('show'), 10);
 
-        // Stop video when modal is closed
-        if (type === 'video') {
-            modalVideo.play();
-        }
+        document.addEventListener('keydown', handleEscKey);
     }
 
     function closeModal() {
@@ -145,31 +147,35 @@ if (!$articles) {
         modal.classList.remove('show');
         setTimeout(() => {
             modal.style.display = 'none';
-            modalVideo.pause();
-            modalVideo.currentTime = 0;
+            if (modalVideo) {
+                modalVideo.pause();
+                modalVideo.currentTime = 0;
+            }
         }, 300);
+
+        document.removeEventListener('keydown', handleEscKey);
     }
 
-    // Close modal on escape key
-    document.addEventListener('keydown', function (e) {
+    function handleEscKey(e) {
         if (e.key === 'Escape') {
             closeModal();
         }
-    });
+    }
 
-    // Lazy load videos
     document.addEventListener('DOMContentLoaded', function () {
-        const videos = document.querySelectorAll('.media-item.video video');
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.src = entry.target.getAttribute('data-src');
-                    observer.unobserve(entry.target);
-                }
+        const videos = document.querySelectorAll('.media-item video');
+        videos.forEach(video => {
+            video.addEventListener('click', function (e) {
+                e.stopPropagation();
             });
         });
 
-        videos.forEach(video => observer.observe(video));
+        const modal = document.getElementById('mediaModal');
+        modal.addEventListener('click', function (e) {
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
     });
 </script>
 

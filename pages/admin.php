@@ -77,7 +77,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             </div>
                         <?php endif; ?>
 
-                        <form method="POST" action="">
+                        <form method="POST" action="admin.php">
                             <div class="form-group mb-3 d-flex justify-content-center">
                                 <div style="width: 50%;">
                                     <label for="admin_id" class="form-label">Enter your ID</label>

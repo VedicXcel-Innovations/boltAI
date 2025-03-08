@@ -1,5 +1,6 @@
 <?php
-function getDynamicContent($table) {
+function getDynamicContent($table)
+{
     global $conn;
     $query = "SELECT * FROM $table";
     $result = $conn->query($query);

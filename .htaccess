@@ -1,13 +1,19 @@
 RewriteEngine On
 RewriteBase /
 
-# Allow direct access to static assets (CSS, JS, images, fonts, etc.)
-RewriteCond %{REQUEST_URI} \.(css|js|png|jpg|jpeg|gif|svg|woff|woff2|ttf|eot|mp4|pdf|ico|json)$ [NC]
-RewriteRule .* - [L]
+# Prevent directory listing
+Options -Indexes
 
-# ⚡ FIX: Preserve POST requests and avoid breaking form submissions
-RewriteCond %{REQUEST_METHOD} =POST
+# Allow direct access to static assets
+RewriteRule \.(css|js|png|jpe?g|gif|svg|woff2?|ttf|eot|mp4|pdf|ico|json)$ - [L,NC]
+
+# Preserve POST requests and avoid breaking form submissions
+RewriteCond %{REQUEST_METHOD} POST
 RewriteRule ^ - [L]
+
+# Prevent direct access to .php files
+RewriteCond %{THE_REQUEST} \s/([^/]+)\.php [NC]
+RewriteRule ^ - [F]
 
 # Remove .php extension for GET requests only
 RewriteCond %{REQUEST_METHOD} !POST
@@ -20,7 +26,23 @@ RewriteCond %{REQUEST_METHOD} !POST
 RewriteCond %{THE_REQUEST} \s/([^.]+)\.php [NC]
 RewriteRule ^ /%1 [R=301,L]
 
+# Handle trailing slashes
+# Add trailing slash for directories
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^(.+[^/])$ %{REQUEST_URI}/ [R=301,L]
+
+# Remove trailing slash for files
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_URI} (.+)/$
+RewriteRule ^ %1 [R=301,L]
+
 # Redirect all non-existing requests to 404
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_URI} !^/404\.php$ [NC]
 RewriteRule . /404.php [L]
+
+# Add caching for static assets
+<FilesMatch "\.(css|js|png|jpe?g|gif|svg|woff2?|ttf|eot|mp4|pdf|ico|json)$">
+    Header set Cache-Control "max-age=31536000, public"
+</FilesMatch>

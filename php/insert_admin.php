@@ -3,7 +3,7 @@
 require 'db_config.php';
 
 // Securely hashed password
-$admin_password = password_hash("coVuv5matrezED4s", PASSWORD_BCRYPT); 
+$admin_password = password_hash("admin", PASSWORD_BCRYPT);
 
 // Insert 'admin' as ID
 $sql = "INSERT INTO admin_login (id, password) VALUES ('admin', '$admin_password') 

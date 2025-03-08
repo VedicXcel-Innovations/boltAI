@@ -13,6 +13,7 @@ include $_SERVER['DOCUMENT_ROOT'] . '/config.php';
     <link rel="stylesheet" href="<?= BASE_URL ?>css/header.css">
     <link rel="stylesheet" href="<?= BASE_URL ?>css/style.css">
     <link rel="stylesheet" href="<?= BASE_URL ?>css/forms.css">
+    <link rel="stylesheet" href="<?= BASE_URL ?>css/dynamic.css">
     <link rel="shortcut icon" href="<?= BASE_URL ?>images/favicon.ico">
     <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
