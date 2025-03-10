@@ -2,6 +2,28 @@
 <?php include 'templates/header.php'; ?>
 
 <main>
+    <!-- Image Carousel Section -->
+    <div class="carousel-container">
+        <div class="carousel">
+            <?php
+            for ($i = 1; $i <= 7; $i++) {
+                echo "<div class='carousel-slide" . ($i === 1 ? " active" : "") . "'>";
+                echo "<img src='" . BASE_URL . "images/carousel_" . $i . ".png' alt='Carousel Image " . $i . "'>";
+                echo "</div>";
+            }
+            ?>
+        </div>
+        <button class="carousel-button prev" onclick="moveSlide(-1)">❮</button>
+        <button class="carousel-button next" onclick="moveSlide(1)">❯</button>
+        <div class="carousel-dots">
+            <?php
+            for ($i = 1; $i <= 7; $i++) {
+                echo "<span class='dot" . ($i === 1 ? " active" : "") . "' onclick='currentSlide(" . $i . ")'></span>";
+            }
+            ?>
+        </div>
+    </div>
+
     <section class="hero">
         <div class="container">
             <h1>Welcome to Jan Sahbhagi Vikas Kendra</h1>
@@ -73,9 +95,6 @@
                     <div class="stat-label">Households Supported</div>
                 </div>
             </div>
-            <div class="text-center mt-4">
-                <a href="<?= BASE_URL ?>pages/impact.php" class="btn btn-primary">See Full Impact</a>
-            </div>
         </section>
 
         <section class="section">
@@ -101,5 +120,158 @@
         </section>
     </div>
 </main>
+
+<style>
+    /* Carousel Styles */
+    .carousel-container {
+        position: relative;
+        max-width: 100%;
+        margin: 0 auto;
+        border-radius: 5px;
+        overflow: hidden;
+    }
+
+    .carousel {
+        position: relative;
+        height: 500px;
+    }
+
+    .carousel-slide {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        transition: opacity 0.5s ease-in-out;
+    }
+
+    .carousel-slide.active {
+        opacity: 1;
+    }
+
+    .carousel-slide img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .carousel-button {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: rgba(21, 58, 111, 0.5);
+        color: white;
+        padding: 16px;
+        border: none;
+        cursor: pointer;
+        font-size: 18px;
+        transition: background 0.3s;
+    }
+
+    .carousel-button:hover {
+        background: rgba(21, 58, 111, 0.8);
+    }
+
+    .prev {
+        left: 10px;
+    }
+
+    .next {
+        right: 10px;
+    }
+
+    .carousel-dots {
+        position: absolute;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        gap: 10px;
+    }
+
+    .dot {
+        width: 12px;
+        height: 12px;
+        background: rgba(255, 255, 255, 0.5);
+        border-radius: 50%;
+        cursor: pointer;
+        transition: background 0.3s;
+    }
+
+    .dot.active {
+        background: var(--secondary-color);
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        .carousel {
+            height: 400px;
+        }
+
+        .carousel-button {
+            padding: 12px;
+            font-size: 16px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .carousel {
+            height: 300px;
+        }
+
+        .carousel-button {
+            padding: 8px;
+            font-size: 14px;
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+        }
+    }
+</style>
+
+<script>
+    let currentSlideIndex = 1;
+    showSlides(currentSlideIndex);
+
+    function moveSlide(n) {
+        showSlides(currentSlideIndex += n);
+    }
+
+    function currentSlide(n) {
+        showSlides(currentSlideIndex = n);
+    }
+
+    function showSlides(n) {
+        let slides = document.getElementsByClassName("carousel-slide");
+        let dots = document.getElementsByClassName("dot");
+
+        if (n > slides.length) {
+            currentSlideIndex = 1;
+        }
+        if (n < 1) {
+            currentSlideIndex = slides.length;
+        }
+
+        // Hide all slides
+        for (let i = 0; i < slides.length; i++) {
+            slides[i].classList.remove("active");
+        }
+
+        // Remove active class from all dots
+        for (let i = 0; i < dots.length; i++) {
+            dots[i].classList.remove("active");
+        }
+
+        // Show current slide and activate corresponding dot
+        slides[currentSlideIndex - 1].classList.add("active");
+        dots[currentSlideIndex - 1].classList.add("active");
+    }
+
+    // Auto advance slides
+    setInterval(() => {
+        moveSlide(1);
+    }, 5000);
+</script>
 
 <?php include 'templates/footer.php'; ?>

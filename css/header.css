@@ -2,12 +2,12 @@
 :root {
     --primary-color: #024950;
     --secondary-color: #0FAAAF;
-    --accent-color: #964734;
-    --light-color: #AFDDE5;
-    --dark-color: #003135;
+    --accent-color: #FF6B6B;
+    --light-color: #B8F6F7;
+    --dark-color: #01292C;
     --white: #FFFFFF;
     --transition: all 0.3s ease;
-    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --shadow: 0 4px 6px rgba(21, 58, 111, 0.1);
     --font-primary: 'Poppins', sans-serif;
     --font-secondary: 'Open Sans', sans-serif;
 }
@@ -231,11 +231,15 @@ nav ul li a:hover::after {
     }
 
     .header-text h1 {
-        font-size: 1.2rem;
+        font-size: 1.1rem;
     }
 
     .header-text p {
         font-size: 0.8rem;
+    }
+
+    nav ul li a {
+        font-size: 0.9rem;
     }
 
     .hamburger {
@@ -311,7 +315,17 @@ nav ul li a:hover::after {
     }
 
     .header-text p {
-        font-size: 0.7rem;
+        font-size: 0.75rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .header-text h1 {
+        font-size: 1rem;
+    }
+
+    .header-text p {
+        font-size: 0.75rem;
     }
 }
 

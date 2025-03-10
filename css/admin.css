@@ -2,9 +2,9 @@
 :root {
     --primary-color: #024950;
     --secondary-color: #0FAAAF;
-    --accent-color: #964734;
-    --light-color: #AFDDE5;
-    --dark-color: #003135;
+    --accent-color: #FF6B6B;
+    --light-color: #B8F6F7;
+    --dark-color: #01292C;
     --white: #FFFFFF;
     --gray-100: #f8f9fa;
     --gray-200: #e9ecef;
@@ -13,8 +13,8 @@
     --font-primary: 'Poppins', sans-serif;
     --font-secondary: 'Open Sans', sans-serif;
     --transition: all 0.3s ease;
-    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+    --shadow: 0 4px 6px rgba(21, 58, 111, 0.1);
+    --shadow-lg: 0 10px 15px rgba(21, 58, 111, 0.15);
     --border-radius: 8px;
 }
 
@@ -224,6 +224,32 @@
 
     .toggle-sidebar {
         display: block !important;
+    }
+
+    .stat-card i {
+        font-size: 2rem;
+    }
+
+    .stat-card .stat-value {
+        font-size: 1.75rem;
+    }
+
+    .stat-card .stat-label {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .stat-card i {
+        font-size: 1.75rem;
+    }
+
+    .stat-card .stat-value {
+        font-size: 1.5rem;
+    }
+
+    .stat-card .stat-label {
+        font-size: 0.85rem;
     }
 }
 

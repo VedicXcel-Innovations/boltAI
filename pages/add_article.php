@@ -3,7 +3,16 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
+$session_lifetime = 24 * 60 * 60;
+
 session_start();
+
+if (isset($_SESSION['SESSION_START_TIME']) && (time() - $_SESSION['SESSION_START_TIME'] > $session_lifetime)) {
+    session_unset();
+    session_destroy();
+    header("Location: " . BASE_URL . "pages/admin.php");
+    exit;
+}
 
 // Check if user is logged in
 if (!isset($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in'] !== true) {

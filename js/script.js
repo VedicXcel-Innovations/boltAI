@@ -92,7 +92,7 @@ function initScrollToTop() {
             width: 40px;
             height: 40px;
             border-radius: 50%;
-            background-color: #024950;
+            background-color: #0FAAAF;
             color: white;
             border: none;
             cursor: pointer;

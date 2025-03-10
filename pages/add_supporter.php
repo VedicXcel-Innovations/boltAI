@@ -3,7 +3,16 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
+$session_lifetime = 24 * 60 * 60;
+
 session_start();
+
+if (isset($_SESSION['SESSION_START_TIME']) && (time() - $_SESSION['SESSION_START_TIME'] > $session_lifetime)) {
+    session_unset();
+    session_destroy();
+    header("Location: " . BASE_URL . "pages/admin.php");
+    exit;
+}
 
 // Check if user is logged in
 if (!isset($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in'] !== true) {
@@ -132,7 +141,8 @@ if (!isset($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in'] !== tru
                 <div class="mb-4">
                     <label for="logo" class="form-label">Upload Logo</label>
                     <div class="input-group">
-                        <input type="file" class="form-control" id="logo" name="logo" accept="image/*" onchange="handleLogoSelect(event)">
+                        <input type="file" class="form-control" id="logo" name="logo" accept="image/*"
+                            onchange="handleLogoSelect(event)">
                         <label class="input-group-text" for="logo">
                             <i class="fas fa-upload"></i>
                         </label>

@@ -1,7 +1,16 @@
 <?php include '../config.php'; ?>
 <?php
-// Start session
+
+$session_lifetime = 24 * 60 * 60;
+
 session_start();
+
+if (isset($_SESSION['SESSION_START_TIME']) && (time() - $_SESSION['SESSION_START_TIME'] > $session_lifetime)) {
+    session_unset();
+    session_destroy();
+    header("Location: " . BASE_URL . "pages/admin.php");
+    exit;
+}
 
 // Check if user is logged in
 if (!isset($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in'] !== true) {
@@ -52,10 +61,10 @@ if (!isset($_SESSION['login_logged'])) {
 }
 
 try {
-    // Query to get the count of articles
-    $articles_query = "SELECT COUNT(*) as count FROM articles";
-    $articles_result = $conn->query($articles_query);
-    $articles_count = $articles_result->fetch_assoc()['count'];
+    // Query to get the count of products
+    $products_query = "SELECT COUNT(*) as count FROM products";
+    $products_result = $conn->query($products_query);
+    $products_count = $products_result->fetch_assoc()['count'];
 
     // Query to get the count of team members
     $team_members_query = "SELECT COUNT(*) as count FROM team_members";
@@ -67,10 +76,10 @@ try {
     $supporters_result = $conn->query($supporters_query);
     $supporters_count = $supporters_result->fetch_assoc()['count'];
 
-    // Query to get the count of products
-    $products_query = "SELECT COUNT(*) as count FROM products";
-    $products_result = $conn->query($products_query);
-    $products_count = $products_result->fetch_assoc()['count'];
+    // Query to get the count of articles
+    $articles_query = "SELECT COUNT(*) as count FROM articles";
+    $articles_result = $conn->query($articles_query);
+    $articles_count = $articles_result->fetch_assoc()['count'];
 
     // Query to get the count of media coverage
     $media_coverage_query = "SELECT COUNT(*) as count FROM media_coverage";
@@ -79,20 +88,20 @@ try {
 
     // Store counts in an array
     $stats = [
-        'articles' => $articles_count,
+        'products' => $products_count,
         'team_members' => $team_members_count,
         'supporters' => $supporters_count,
-        'products' => $products_count,
+        'articles' => $articles_count,
         'media_coverage' => $media_coverage_count,
     ];
 } catch (Exception $e) {
     // Handle errors
     error_log("Error fetching stats: " . $e->getMessage());
     $stats = [
-        'articles' => 0,
+        'products' => 0,
         'team_members' => 0,
         'supporters' => 0,
-        'products' => 0,
+        'articles' => 0,
         'media_coverage' => 0,
     ];
 }
@@ -370,16 +379,17 @@ function formatTimestampToIST($timestamp)
         <ul>
             <li><a href="<?= $_SERVER['PHP_SELF']; ?>" class="active"><i class="fas fa-tachometer-alt"></i>
                     Dashboard</a></li>
+            <li><a href="<?= BASE_URL ?>pages/manage_products.php"><i class="fas fa-newspaper"></i>
+                    Manage Products</a></li>
             <li><a href="<?= BASE_URL ?>pages/manage_team_members.php"><i class="fas fa-users"></i> Manage
                     Team</a></li>
             <li><a href="<?= BASE_URL ?>pages/manage_supporters.php"><i class="fas fa-hands-helping"></i>
                     Manage Supporters</a></li>
             <li><a href="<?= BASE_URL ?>pages/manage_article.php"><i class="fas fa-newspaper"></i>
                     Manage Articles</a></li>
-            <li><a href="<?= BASE_URL ?>pages/manage_media_coverage.php" target="_blank"><i class="fas fa-image"></i> Manage
+            <li><a href="<?= BASE_URL ?>pages/manage_media_coverage.php"><i class="fas fa-image"></i> Manage
                     Media</a></li>
-                    <li><a href="<?= BASE_URL ?>pages/manage_products.php"><i class="fas fa-newspaper"></i>
-                    Manage Products</a></li>
+
             <li><a href="<?= BASE_URL ?>index.php"><i class="fas fa-external-link-alt"></i> View
                     Website</a></li>
             <li><a href="?action=logout"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
@@ -394,20 +404,13 @@ function formatTimestampToIST($timestamp)
         </div>
 
         <h2 class="mb-4">Overview</h2>
-        
+
         <div class="stats-row mb-4">
             <div>
                 <div class="dashboard-card stat-card">
                     <i class="fas fa-box"></i>
                     <div class="stat-value"><?= $stats['products'] ?></div>
                     <div class="stat-label">Products</div>
-                </div>
-            </div>
-            <div>
-                <div class="dashboard-card stat-card">
-                    <i class="fas fa-bullhorn"></i>
-                    <div class="stat-value"><?= $stats['media_coverage'] ?></div>
-                    <div class="stat-label">Media</div>
                 </div>
             </div>
             <div>
@@ -431,18 +434,25 @@ function formatTimestampToIST($timestamp)
                     <div class="stat-label">Articles</div>
                 </div>
             </div>
+            <div>
+                <div class="dashboard-card stat-card">
+                    <i class="fas fa-bullhorn"></i>
+                    <div class="stat-value"><?= $stats['media_coverage'] ?></div>
+                    <div class="stat-label">Media</div>
+                </div>
+            </div>
         </div>
 
         <div class="dashboard-card">
             <h3 class="mb-3">Quick Actions</h3>
             <div class="d-flex flex-wrap gap-3">
+                <a href="add_product.php" class="btn btn-primary"><i class="fas fa-plus"></i> Add Product</a>
                 <a href="add_team_member.php" class="btn btn-primary"><i class="fas fa-plus"></i> Add Team Member</a>
                 <a href="add_supporter.php" class="btn btn-primary"><i class="fas fa-plus"></i> Add Supporter</a>
-                <a href="add_product.php" class="btn btn-primary"><i class="fas fa-plus"></i> Add Product</a>
                 <a href="add_article.php" class="btn btn-primary">
                     <i class="fas fa-plus"></i> Add Article
                 </a>
-                <a href="add_media_coverage.php" class="btn btn-primary"><i class="fas fa-upload"></i> Add Media</a>
+                <a href="add_media_coverage.php" class="btn btn-primary"><i class="fas fa-plus"></i> Add Media</a>
             </div>
         </div>
 

@@ -2,7 +2,16 @@
 include '../config.php';
 include '../php/db_config.php';
 
+$session_lifetime = 24 * 60 * 60;
+
 session_start();
+
+if (isset($_SESSION['SESSION_START_TIME']) && (time() - $_SESSION['SESSION_START_TIME'] > $session_lifetime)) {
+    session_unset();
+    session_destroy();
+    header("Location: " . BASE_URL . "pages/admin.php");
+    exit;
+}
 
 // Check if user is logged in
 if (!isset($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in'] !== true) {
