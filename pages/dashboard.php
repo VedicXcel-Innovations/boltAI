@@ -380,19 +380,20 @@ function formatTimestampToIST($timestamp)
 
     <div class="dashboard-sidebar">
         <ul>
-            <li><a href="<?= $_SERVER['PHP_SELF']; ?>" class="active"><i class="fas fa-tachometer-alt"></i>
+            <li><a href="<?= $_SERVER['PHP_SELF']; ?>" class="active"><i class="fas fa-home"></i>
                     Dashboard</a></li>
-            <li><a href="<?= BASE_URL ?>pages/manage_products.php"><i class="fas fa-newspaper"></i>
+            <li><a href="<?= BASE_URL ?>pages/manage_products.php"><i class="fas fa-wrench"></i>
                     Manage Products</a></li>
             <li><a href="<?= BASE_URL ?>pages/manage_team_members.php"><i class="fas fa-users"></i> Manage
                     Team</a></li>
             <li><a href="<?= BASE_URL ?>pages/manage_supporters.php"><i class="fas fa-hands-helping"></i>
                     Manage Supporters</a></li>
-            <li><a href="<?= BASE_URL ?>pages/manage_article.php"><i class="fas fa-newspaper"></i>
+            <li><a href="<?= BASE_URL ?>pages/manage_article.php"><i class="fas fa-image"></i>
                     Manage Articles</a></li>
-            <li><a href="<?= BASE_URL ?>pages/manage_media_coverage.php"><i class="fas fa-image"></i> Manage
+            <li><a href="<?= BASE_URL ?>pages/manage_media_coverage.php"><i class="fas fa-newspaper"></i> Manage
                     Media</a></li>
-
+            <li><a href="<?= BASE_URL ?>pages/manage_volunteer.php"><i class="fas fa-user-tie"></i> Volunteer
+                    Applications</a></li>
             <li><a href="<?= BASE_URL ?>index.php"><i class="fas fa-external-link-alt"></i> View
                     Website</a></li>
             <li><a href="?action=logout"><i class="fas fa-sign-out-alt"></i> Logout</a></li>

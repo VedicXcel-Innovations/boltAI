@@ -227,7 +227,7 @@ $media_coverage = $stmt->get_result();
                             <thead>
                                 <tr>
                                     <th>Type</th>
-                                    <th>Reference ID</th>
+                                    <th>Reference</th>
                                     <th>Created At</th>
                                     <th>Media</th>
                                     <th>Actions</th>

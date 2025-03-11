@@ -120,7 +120,7 @@ if (!isset($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in'] !== tru
                 </div>
 
                 <div class="mb-4">
-                    <label for="reference_id" class="form-label">Reference ID</label>
+                    <label for="reference_id" class="form-label">Reference</label>
                     <input type="text" class="form-control" id="reference_id" name="reference_id" required>
                 </div>
 

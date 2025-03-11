@@ -157,14 +157,31 @@
         </section>
 
         <section class="section text-center">
-            <h2>Get Involved</h2>
-            <p>Join us in our mission to create sustainable change and empower communities.</p>
-            <div class="d-flex justify-content-center gap-3 mt-4">
-                <a href="<?= BASE_URL ?>pages/make_difference.php" class="btn btn-primary">Volunteer</a>
-                <a href="<?= BASE_URL ?>pages/make_difference.php" class="btn btn-accent">Donate</a>
+            <div class="become-supporter">
+                <h2>Get Involved</h2>
+                <p>Join us in our mission to create sustainable change and empower communities.</p>
+                <div class="d-flex justify-content-center gap-3 mt-4">
+                    <a href="<?= BASE_URL ?>pages/make_difference.php" class="btn btn-primary">Volunteer</a>
+                    <a href="<?= BASE_URL ?>pages/make_difference.php" class="btn btn-accent">Donate</a>
+                </div>
             </div>
         </section>
     </div>
 </main>
+
+<style>
+    .become-supporter {
+        background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+        padding: 4rem 2rem;
+        border-radius: var(--border-radius);
+        color: var(--white);
+        margin-top: 4rem;
+    }
+
+    .become-supporter h2 {
+        color: var(--white);
+        margin-bottom: 1rem;
+    }
+</style>
 
 <?php include '../templates/footer.php'; ?>
