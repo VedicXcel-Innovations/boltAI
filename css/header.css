@@ -17,7 +17,7 @@
 header {
     background-color: var(--primary-color);
     color: var(--light-color);
-    padding: 1rem 0;
+    padding: clamp(0.5rem, 2vw, 1rem) 0;
     position: sticky;
     top: 0;
     z-index: 1000;
@@ -33,7 +33,7 @@ header {
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 1.5rem;
+    padding: 0 clamp(1rem, 3vw, 1.5rem);
 }
 
 /* LOGO & TEXT CONTAINER */
@@ -42,7 +42,7 @@ header {
     align-items: center;
     width: 100%;
     justify-content: space-between;
-    margin-bottom: 0.5rem;
+    margin-bottom: clamp(0.25rem, 1vw, 0.5rem);
 }
 
 /* LOGO */
@@ -52,9 +52,9 @@ header {
 }
 
 .logo img {
-    max-width: 50px;
+    max-width: clamp(40px, 8vw, 50px);
     height: auto;
-    margin-right: 15px;
+    margin-right: clamp(10px, 2vw, 15px);
     transition: var(--transition);
 }
 
@@ -67,7 +67,7 @@ header {
 
 .header-text h1 {
     font-family: var(--font-primary);
-    font-size: 1.5rem;
+    font-size: clamp(1rem, 2.5vw, 1.5rem);
     margin: 0;
     color: var(--white);
     font-weight: 600;
@@ -75,7 +75,7 @@ header {
 
 .header-text p {
     font-family: var(--font-secondary);
-    font-size: 0.9rem;
+    font-size: clamp(0.75rem, 1.5vw, 0.9rem);
     margin: 0;
     color: var(--light-color);
 }
@@ -91,7 +91,7 @@ nav ul {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 1.5rem;
+    gap: clamp(1rem, 2vw, 1.5rem);
     margin: 0;
     padding: 0;
 }
@@ -106,7 +106,7 @@ nav ul li a {
     color: var(--light-color);
     text-decoration: none;
     font-weight: 500;
-    font-size: 1rem;
+    font-size: clamp(0.9rem, 1.5vw, 1rem);
     padding: 0.5rem 0;
     display: block;
     transition: var(--transition);
@@ -198,7 +198,7 @@ nav ul li a:hover::after {
     padding: 0.75rem 1rem;
     text-decoration: none;
     display: block;
-    font-size: 0.9rem;
+    font-size: clamp(0.85rem, 1.2vw, 0.9rem);
     transition: var(--transition);
 }
 
@@ -207,7 +207,27 @@ nav ul li a:hover::after {
     color: var(--white);
 }
 
-/* Responsive Design for Smaller Screens */
+/* Mobile Menu Overlay */
+.menu-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    opacity: 0;
+    visibility: hidden;
+    transition: var(--transition);
+}
+
+.menu-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Responsive Design */
 @media (max-width: 992px) {
     .header-container {
         padding: 0 1rem;
@@ -215,6 +235,14 @@ nav ul li a:hover::after {
 
     nav ul {
         gap: 1rem;
+    }
+
+    .header-text h1 {
+        font-size: clamp(0.9rem, 2vw, 1.1rem);
+    }
+
+    .header-text p {
+        font-size: clamp(0.7rem, 1.2vw, 0.8rem);
     }
 }
 
@@ -229,18 +257,6 @@ nav ul li a:hover::after {
     .logo-container {
         margin-bottom: 0;
         width: auto;
-    }
-
-    .header-text h1 {
-        font-size: 1.1rem;
-    }
-
-    .header-text p {
-        font-size: 0.8rem;
-    }
-
-    nav ul li a {
-        font-size: 0.9rem;
     }
 
     .hamburger {
@@ -303,30 +319,29 @@ nav ul li a:hover::after {
     .dropdown-content a {
         padding: 0.75rem 1.5rem;
     }
+
+    .menu-overlay {
+        display: block;
+    }
 }
 
 @media (max-width: 576px) {
     .logo img {
-        max-width: 40px;
-        margin-right: 10px;
+        max-width: 35px;
+        margin-right: 8px;
     }
 
     .header-text h1 {
-        font-size: 1rem;
+        font-size: 0.9rem;
     }
 
     .header-text p {
-        font-size: 0.75rem;
-    }
-}
-
-@media (max-width: 480px) {
-    .header-text h1 {
-        font-size: 1rem;
+        font-size: 0.7rem;
     }
 
-    .header-text p {
-        font-size: 0.75rem;
+    nav {
+        width: 100%;
+        max-width: none;
     }
 }
 
@@ -343,21 +358,26 @@ nav ul li a:hover::after {
     transform: translateY(-8px) rotate(-45deg);
 }
 
-/* Overlay for Mobile Menu */
-.menu-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 999;
-    opacity: 0;
-    visibility: hidden;
-    transition: var(--transition);
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
 }
 
-.menu-overlay.active {
-    opacity: 1;
-    visibility: visible;
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: var(--primary-color);
+    color: white;
+    padding: 8px;
+    z-index: 100;
+}
+
+.skip-link:focus {
+    top: 0;
 }

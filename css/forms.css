@@ -2,8 +2,8 @@
 .form-control {
     display: block;
     width: 100%;
-    padding: 0.75rem 1rem;
-    font-size: 1rem;
+    padding: clamp(0.6rem, 1.5vw, 0.75rem) clamp(0.8rem, 2vw, 1rem);
+    font-size: clamp(0.9rem, 1.5vw, 1rem);
     font-weight: 400;
     line-height: 1.5;
     color: var(--dark-color);
@@ -24,13 +24,14 @@
     margin-bottom: 0.5rem;
     font-weight: 500;
     color: var(--dark-color);
+    font-size: clamp(0.9rem, 1.5vw, 1rem);
 }
 
 .form-select {
     display: block;
     width: 100%;
-    padding: 0.75rem 2.25rem 0.75rem 1rem;
-    font-size: 1rem;
+    padding: clamp(0.6rem, 1.5vw, 0.75rem) clamp(2rem, 3vw, 2.25rem) clamp(0.6rem, 1.5vw, 0.75rem) clamp(0.8rem, 2vw, 1rem);
+    font-size: clamp(0.9rem, 1.5vw, 1rem);
     font-weight: 400;
     line-height: 1.5;
     color: var(--dark-color);
@@ -91,6 +92,7 @@
 
 .form-check-label {
     margin-bottom: 0;
+    font-size: clamp(0.9rem, 1.5vw, 1rem);
 }
 
 .input-group {
@@ -111,8 +113,8 @@
 .input-group-text {
     display: flex;
     align-items: center;
-    padding: 0.75rem 1rem;
-    font-size: 1rem;
+    padding: clamp(0.6rem, 1.5vw, 0.75rem) clamp(0.8rem, 2vw, 1rem);
+    font-size: clamp(0.9rem, 1.5vw, 1rem);
     font-weight: 400;
     line-height: 1.5;
     color: var(--dark-color);
@@ -162,6 +164,7 @@
     border: 1px solid transparent;
     transform-origin: 0 0;
     transition: opacity 0.1s ease-in-out, transform 0.1s ease-in-out;
+    font-size: clamp(0.9rem, 1.5vw, 1rem);
 }
 
 .form-floating>.form-control:focus,
@@ -180,9 +183,8 @@
 .form-control {
     box-shadow: none;
     border: 1px solid var(--gray-300);
-    font-size: 1rem;
+    font-size: clamp(0.9rem, 1.5vw, 1rem);
     height: auto;
-    padding: 0.75rem 1rem;
 }
 
 .form-control:focus {
@@ -192,6 +194,7 @@
 
 textarea.form-control {
     min-height: 100px;
+    resize: vertical;
 }
 
 .form-group {
@@ -199,19 +202,19 @@ textarea.form-control {
 }
 
 /* Form validation styles */
-.invalid-feedback {
-    display: none;
-    width: 100%;
-    margin-top: 0.25rem;
-    font-size: 0.875em;
-    color: #dc3545;
-}
-
+.invalid-feedback,
 .valid-feedback {
     display: none;
     width: 100%;
     margin-top: 0.25rem;
-    font-size: 0.875em;
+    font-size: clamp(0.8rem, 1.2vw, 0.875rem);
+}
+
+.invalid-feedback {
+    color: #dc3545;
+}
+
+.valid-feedback {
     color: #198754;
 }
 
@@ -240,6 +243,38 @@ textarea.form-control {
     .form-floating>.form-control {
         height: calc(3.2rem + 2px);
     }
+
+    .form-group {
+        margin-bottom: 1rem;
+    }
+}
+
+@media (max-width: 576px) {
+
+    .form-control,
+    .form-select,
+    .input-group-text {
+        font-size: 0.9rem;
+        padding: 0.5rem 0.7rem;
+    }
+
+    .form-floating>.form-control {
+        height: calc(3rem + 2px);
+    }
+
+    .input-group {
+        flex-direction: column;
+    }
+
+    .input-group>.form-control {
+        width: 100%;
+        margin-bottom: 0.5rem;
+    }
+
+    .input-group-text {
+        width: 100%;
+        justify-content: center;
+    }
 }
 
 /* Gap utility for form elements */
@@ -261,4 +296,30 @@ textarea.form-control {
 
 .gap-5 {
     gap: 3rem;
+}
+
+/* Form accessibility */
+@media (prefers-reduced-motion: reduce) {
+
+    .form-control,
+    .form-select,
+    .form-check-input {
+        transition: none;
+    }
+}
+
+/* High contrast mode support */
+@media (forced-colors: active) {
+
+    .form-control,
+    .form-select,
+    .form-check-input {
+        border: 2px solid ButtonText;
+    }
+
+    .form-control:focus,
+    .form-select:focus,
+    .form-check-input:focus {
+        outline: 2px solid Highlight;
+    }
 }
