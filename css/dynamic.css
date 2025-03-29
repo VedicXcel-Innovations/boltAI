@@ -1,0 +1,198 @@
+/* Dynamic Content Styles */
+
+/* Media Gallery Styles */
+.media-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(clamp(120px, 20vw, 150px), 1fr));
+    gap: clamp(0.5rem, 2vw, 1rem);
+    padding: clamp(0.75rem, 2vw, 1rem);
+    background: var(--gray-100);
+    border-radius: 0 0 var(--border-radius) var(--border-radius);
+}
+
+.media-item {
+    position: relative;
+    aspect-ratio: 16/9;
+    cursor: pointer;
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: var(--gray-200);
+}
+
+.media-item img,
+.media-item video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.media-item:hover img,
+.media-item:hover video {
+    transform: scale(1.05);
+}
+
+/* Video thumbnail styles */
+.media-item.video {
+    position: relative;
+}
+
+.media-item.video .play-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: clamp(30px, 8vw, 40px);
+    height: clamp(30px, 8vw, 40px);
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: clamp(0.9rem, 1.5vw, 1.2rem);
+    transition: all 0.3s ease;
+}
+
+.media-item.video:hover .play-icon {
+    background-color: var(--secondary-color);
+    transform: translate(-50%, -50%) scale(1.1);
+}
+
+/* Modal styles */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    z-index: 1000;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.modal.show {
+    opacity: 1;
+}
+
+.modal-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 90%;
+    max-height: 90vh;
+}
+
+.modal-content img,
+.modal-content video {
+    max-width: 100%;
+    max-height: 90vh;
+    object-fit: contain;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+}
+
+.modal-close {
+    position: absolute;
+    top: clamp(0.75rem, 2vw, 1rem);
+    right: clamp(0.75rem, 2vw, 1rem);
+    color: var(--white);
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    cursor: pointer;
+    transition: var(--transition);
+    width: clamp(35px, 8vw, 40px);
+    height: clamp(35px, 8vw, 40px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 50%;
+    z-index: 1001;
+}
+
+.modal-close:hover {
+    transform: rotate(90deg);
+    background: rgba(0, 0, 0, 0.8);
+}
+
+/* Article container styles */
+.article-container {
+    background: var(--white);
+    transition: var(--transition);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+}
+
+.article-container:hover {
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-5px);
+}
+
+.article-content {
+    padding: clamp(1rem, 3vw, 1.5rem);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .media-gallery {
+        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+        gap: 0.5rem;
+    }
+
+    .media-item.video .play-icon {
+        width: 30px;
+        height: 30px;
+        font-size: 0.9rem;
+    }
+
+    .modal-content {
+        width: 95%;
+    }
+
+    .article-content {
+        padding: 1rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .media-gallery {
+        grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+        gap: 0.25rem;
+        padding: 0.5rem;
+    }
+
+    .modal-close {
+        top: 0.5rem;
+        right: 0.5rem;
+        width: 30px;
+        height: 30px;
+        font-size: 1.25rem;
+    }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+
+    .media-item img,
+    .media-item video,
+    .article-container,
+    .modal-close {
+        transition: none;
+    }
+}
+
+/* High contrast mode */
+@media (forced-colors: active) {
+    .media-item.video .play-icon {
+        background-color: ButtonText;
+        color: ButtonFace;
+    }
+
+    .modal-close {
+        background-color: ButtonText;
+        color: ButtonFace;
+    }
+}
