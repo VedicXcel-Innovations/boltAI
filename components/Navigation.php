@@ -11,7 +11,7 @@ include 'top.php';
         <div class="toggle">
             <i class="fas fa-bars"></i>
         </div>
-        <div class="nav-menu nav-collapas">
+        <div class="nav-menu nav-collapse">
             <ul class="d-flex">
                 <li>
                     <a href="index.php">Home</a>
@@ -20,7 +20,7 @@ include 'top.php';
                     <a href="#about">About</a>
                 </li>
                 <li>
-                    <a href="#volenteres">Our Volunteer</a>
+                    <a href="#volunteers">Our Volunteer</a>
                 </li>
                 <li>
                     <a href="#contact">Contact</a>
@@ -30,7 +30,7 @@ include 'top.php';
                 </li>
             </ul>
         </div>
-        <div class="social nav-collapas">
+        <div class="social nav-collapse">
             <ul class="d-flex">
                 <li>
                     <a href="#"><i class="fab fa-facebook-f"></i></a>

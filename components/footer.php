@@ -17,7 +17,7 @@
                 </li>
             </ul>
         </div>
-        <div class="footer-iteam">
+        <div class="footer-item">
             <h2>Our Pagges</h2>
             <ul>
                 <li>
@@ -27,7 +27,7 @@
                     <a href="#about">About</a>
                 </li>
                 <li>
-                    <a href="#volenteres">Our Volunteer</a>
+                    <a href="#volunteers">Our Volunteer</a>
                 </li>
                 <li>
                     <a href="#contact">Contact</a>
