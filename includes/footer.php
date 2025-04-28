@@ -1,20 +1,7 @@
 </main>
 <footer class="main-footer">
     <div class="container">
-        <!-- Newsletter Section -->
-        <!-- <div class="footer-newsletter">
-            <div class="newsletter-content">
-                <h2>Subscribe to Our Newsletter</h2>
-                <p>Stay updated with our latest campaigns and success stories</p>
-            </div>
-            <form class="newsletter-form">
-                <div class="form-group">
-                    <input type="email" placeholder="Enter your email" required>
-                    <button type="submit" class="btn btn-primary">Subscribe</button>
-                </div>
-            </form>
-        </div> -->
-        <div style="padding: 1rem 0;"> </div>
+        <div style="padding: 1.5rem 0;"> </div>
         <!-- Main Footer Grid -->
         <div class="footer-grid">
             <!-- About Column -->
@@ -25,17 +12,17 @@
                 <p class="footer-text">Gyan Deepak Foundation is an Indian NGO that believes in every child's right
                     to a childhood - to live, learn, grow and play.</p>
                 <div class="social-links">
-                    <a href="#" class="social-link" aria-label="Facebook">
+                    <a href="https://www.facebook.com/gyandeepakngo/" class="social-link" aria-label="Facebook">
                         <i class="fab fa-facebook-f"></i>
                     </a>
-                    <a href="#" class="social-link" aria-label="Twitter">
-                        <i class="fab fa-twitter"></i>
-                    </a>
-                    <a href="#" class="social-link" aria-label="Instagram">
+                    <a href="https://www.instagram.com/gyandeepakngo" class="social-link" aria-label="Instagram">
                         <i class="fab fa-instagram"></i>
                     </a>
-                    <a href="#" class="social-link" aria-label="LinkedIn">
+                    <a href="https://www.linkedin.com/company/gyandeepakngo" class="social-link" aria-label="LinkedIn">
                         <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="https://wa.me/918240629266" class="social-link" aria-label="WhatsApp">
+                        <i class="fab fa-whatsapp"></i>
                     </a>
                 </div>
             </div>
@@ -61,21 +48,21 @@
                         <i class="fas fa-map-marker-alt"></i>
                         <div>
                             <h4>Address</h4>
-                            <p>123 Gyan Deepak Avenue, Mumbai, India</p>
+                            <p>55 Gariahat Road, 1st Floor, Suite No 10, Kolkata - 700019</p>
                         </div>
                     </div>
                     <div class="footer-contact-info-item">
                         <i class="fas fa-phone-alt"></i>
                         <div>
                             <h4>Phone</h4>
-                            <p>+91 1234567890</p>
+                            <p>+91 82406 29266</p>
                         </div>
                     </div>
                     <div class="footer-contact-info-item">
                         <i class="fas fa-envelope"></i>
                         <div>
                             <h4>Email</h4>
-                            <p>info@Gyan Deepak.org</p>
+                            <p>gyandeepak@gmail.com</p>
                         </div>
                     </div>
                 </div>
@@ -106,16 +93,10 @@
             <div class="footer-bottom-content">
                 <p>&copy; <?php echo date('Y'); ?> Gyan Deepak Foundation. All Rights Reserved.</p>
                 <div class="footer-bottom-links">
-                    <a href="/pages/privacy-policy.php">Privacy</a>
-                    <a href="/pages/terms-conditions.php">Terms</a>
-                    <a href="/sitemap">Sitemap</a>
+                    <a href="/pages/privacy-policy.php">Privacy Policy</a>
+                    <a href="/pages/terms-conditions.php">Terms & Conditions </a>
                 </div>
             </div>
         </div>
     </div>
 </footer>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
-<script src="/js/main.js"></script>
-</body>
-
-</html>

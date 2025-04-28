@@ -21,6 +21,45 @@
 
 <body>
     <header class="main-header">
+
+        <!-- Header Top Band -->
+        <div class="header-top" style="background-color: #521706;">
+
+            <div class="header-top-content">
+                <div class="header-location">
+                    <i class="fa-solid fa-location-dot fa-lg" style="color: #db4437;"></i>
+                    <span>Presence in Kolkata & Bihar</span>
+                </div>
+
+                <div class="header-contact">
+                    <a href="tel:+918240629266">
+                        <i class="fa-solid fa-phone-volume fa-beat fa-lg"></i>
+                        <span>+91 82406 29266</span>
+                    </a>
+                    <a href="mailto:gyandeepak.ballygunge@gmail.com">
+                        <i class="fa-solid fa-envelope fa-beat fa-lg"></i>
+                        <span>gyandeepak.ballygunge@gmail.com</span>
+                    </a>
+                </div>
+
+                <div class="header-social">
+                    <a href="https://www.facebook.com/gyandeepakngo/" target="_blank" aria-label="Facebook">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="https:///www.instagram.com/gyandeepakngo" target="_blank" aria-label="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/company/gyandeepakngo" target="_blank" aria-label="LinkedIn">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="https://wa.me/918240629266" target="_blank" aria-label="WhatsApp">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
         <div class="header-container">
             <!-- Logo Section -->
             <div class="logo-section">
@@ -56,7 +95,7 @@
                         </a>
                         <ul class="dropdown-menu">
                             <li><a href="/pages/about.php#founder" class="dropdown-link">Founder's Message</a></li>
-                            <li><a href="/pages/about.php#vision" class="dropdown-link">Vision & Mission</a></li>
+                            <li><a href="/pages/about.php#vision" class="dropdown-link">Mission & Vision</a></li>
                             <li><a href="/pages/about.php#team" class="dropdown-link">Our Team</a></li>
                             <li><a href="/pages/about.php#centers" class="dropdown-link">Our Centers</a></li>
                         </ul>
@@ -128,4 +167,4 @@
             </div>
         </div>
     </header>
-    <main>
+</body>
