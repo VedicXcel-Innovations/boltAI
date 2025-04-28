@@ -222,6 +222,7 @@ img {
     flex: 1;
     display: flex;
     justify-content: center;
+    font-family: 'Chelsea Market', cursive;
 }
 
 .nav-list {

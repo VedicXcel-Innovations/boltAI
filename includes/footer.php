@@ -32,11 +32,11 @@
                 <h3 class="footer-title">Quick Links</h3>
                 <ul class="footer-links">
                     <li><a href="/pages/about.php">About Us</a></li>
-                    <li><a href="/pages/campaigns.php">Our Work</a></li>
-                    <li><a href="/pages/donate.php">Donate</a></li>
-                    <li><a href="/pages/contact.php">Contact Us</a></li>
-                    <li><a href="/pages/privacy-policy.php">Privacy Policy</a></li>
-                    <li><a href="/pages/terms-conditions.php">Terms & Conditions</a></li>
+                    <li><a href="/pages/projects.php">Our Projects</a></li>
+                    <li><a href="/pages/events.php">Our Events</a></li>
+                    <li><a href="/pages/get-involved.php">Get Involved</a></li>
+                    <li><a href="/pages/gallery.php">Gallery</a></li>
+                    <li><a href="/pages/contact.php">Contact us</a></li>
                 </ul>
             </div>
 
@@ -76,9 +76,9 @@
                         <i class="fas fa-hand-holding-heart"></i>
                         <span>Make a Donation</span>
                     </a>
-                    <a href="/pages/get-involved.php#volunteer" class="support-card">
+                    <a href="/pages/volunteer.php" class="support-card">
                         <i class="fas fa-users"></i>
-                        <span>Volunteer</span>
+                        <span>Become a Volunteer</span>
                     </a>
                     <a href="/pages/fundraise.php" class="support-card">
                         <i class="fas fa-seedling"></i>
