@@ -1,19 +1,29 @@
 <?php
 $pageTitle = "Privacy Policy";
-$pageDescription = "Learn how we protect your personal information and respect your privacy.";
 include '../includes/header.php';
 ?>
+
+<!-- Get Involved Page Content -->
+<section class="page-header">
+    <div class="container">
+        <h1>Privacy Policy</h1>
+        <p>We protect your data and respect privacy</p>
+    </div>
+</section>
+
 <div class="vertical-padding"></div>
 <div class="privacy-policy-container">
     <div class="privacy-policy-content">
         <h1>Privacy Policy</h1>
         <p class="last-updated">Last Updated: <?php echo date('F j, Y'); ?></p>
-        
+
         <div class="policy-section">
             <h2>1. Introduction</h2>
-            <p>Welcome to Gyan Deepak Foundation ("we", "our", or "us"). We are committed to protecting your privacy and ensuring the security of your personal information. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website.</p>
+            <p>Welcome to Gyan Deepak Foundation ("we", "our", or "us"). We are committed to protecting your privacy and
+                ensuring the security of your personal information. This Privacy Policy explains how we collect, use,
+                disclose, and safeguard your information when you visit our website.</p>
         </div>
-        
+
         <div class="policy-section">
             <h2>2. Information We Collect</h2>
             <p>We may collect personal information that you voluntarily provide to us when you:</p>
@@ -32,9 +42,9 @@ include '../includes/header.php';
                 <li>IP address and browser information</li>
             </ul>
         </div>
-        
+
         <!-- Continue with all other sections in the same pattern -->
-        
+
         <div class="policy-section">
             <h2>9. Contact Us</h2>
             <p>If you have questions about this Privacy Policy, please contact us at:</p>

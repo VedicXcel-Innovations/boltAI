@@ -76,13 +76,13 @@
                         <i class="fas fa-hand-holding-heart"></i>
                         <span>Make a Donation</span>
                     </a>
-                    <a href="/pages/volunteer.php" class="support-card">
-                        <i class="fas fa-users"></i>
+                    <a href="/pages/get-involved.php#volunteer" class="support-card">
+                        <i class="fas fa-handshake-angle"></i>
                         <span>Become a Volunteer</span>
                     </a>
-                    <a href="/pages/fundraise.php" class="support-card">
-                        <i class="fas fa-seedling"></i>
-                        <span>Start Fundraising</span>
+                    <a href="/pages/get-involved.php#careers" class="support-card">
+                        <i class="fas fa-users-line"></i>
+                        <span>Career Opportunities</span>
                     </a>
                 </div>
             </div>
