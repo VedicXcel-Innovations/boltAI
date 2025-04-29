@@ -72,8 +72,9 @@ include '../includes/header.php';
                         <li>Conducting research and analysis</li>
                         <li>Complying with legal obligations</li>
                     </ul>
-                    <p class="highlight-text">We do not sell, trade, or rent your personal information to third parties.
-                    </p>
+                    <li class="highlight-text">We do not sell, trade, or rent your personal information to third
+                        parties.
+                    </li>
                 </div>
 
                 <!-- Information Sharing -->
@@ -139,7 +140,7 @@ include '../includes/header.php';
                     </div>
                 </div>
 
-                <!-- Additional Sections -->
+                <!-- Cookies and Tracking -->
                 <div class="policy-section">
                     <h2><i class="fas fa-cookie-bite"></i> Cookies and Tracking</h2>
                     <p>Our website may use cookies and similar technologies to enhance your browsing experience. You can
@@ -147,12 +148,14 @@ include '../includes/header.php';
                         functionality.</p>
                 </div>
 
+                <!-- Third-Party Links -->
                 <div class="policy-section">
                     <h2><i class="fas fa-link"></i> Third-Party Links</h2>
                     <p>Our website may contain links to third-party websites. We are not responsible for their privacy
                         practices or content. Please review their privacy policies.</p>
                 </div>
 
+                <!-- Children's Privacy -->
                 <div class="policy-section">
                     <h2><i class="fas fa-child"></i> Children's Privacy</h2>
                     <p>We do not knowingly collect personal information from children under 13 without parental consent.
@@ -193,7 +196,6 @@ include '../includes/header.php';
 </section>
 
 <style>
-    /* Privacy Policy Styles */
     .privacy-policy-section {
         padding: 60px 0;
         background: #f8f9fa;
